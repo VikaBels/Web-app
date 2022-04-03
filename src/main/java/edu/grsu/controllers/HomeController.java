@@ -7,10 +7,7 @@ import edu.grsu.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -23,10 +20,10 @@ public class HomeController {
     private Repository repository;
 
     @GetMapping
-    public ModelAndView getAll(Model model, @ModelAttribute("status") FilterDTO filterDTO){
+    public ModelAndView getAll(Model model, @ModelAttribute("status") FilterDTO filterDTO) {
         ModelAndView modelAndView = new ModelAndView("index");
 
-        if(filterDTO == null){
+        if (filterDTO == null) {
             filterDTO = new FilterDTO();
         }
 
@@ -40,12 +37,23 @@ public class HomeController {
     }
 
     @PostMapping
-    public ModelAndView create(@ModelAttribute("newTask") TaskDTO taskDTO){
+    public ModelAndView create(@ModelAttribute("newTask") TaskDTO taskDTO) {
         ModelAndView modelAndView = new ModelAndView("redirect:/home");
 
         repository.create(taskDTO);
 
         return modelAndView;
     }
+
+    @PostMapping("/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id, @ModelAttribute("newTask") TaskDTO taskDTO) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/home");
+        taskDTO.setId(id);
+
+        repository.update(taskDTO);
+
+        return modelAndView;
+    }
+
 
 }

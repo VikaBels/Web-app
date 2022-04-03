@@ -65,8 +65,13 @@
     color: #3D82EB;
 }
 
-.menu:hover{
+.menu:hover {
     position: relative;
+}
+
+.menu {
+    background-color: transparent;
+    border: 0;
 }
 
 .menu__button {
@@ -91,9 +96,10 @@
     background: #4E4E4E;
 }
 
-.task__delete-button{
+.task__delete-button {
     display: none;
 }
+
 /**/
 .task {
     padding: 16px;
@@ -110,10 +116,13 @@
     padding-right: 16px;
 }
 
-.task:hover .task__delete-button{
+.task:hover .task__delete-button {
     width: 32px;
     display: block;
+    background-color: transparent;
+    border: 0;
 }
+
 /**/
 .task__checkbox {
     width: 16px;
@@ -121,9 +130,10 @@
     border: 2px solid #CBCBCB;
     border-radius: 100%;
     flex-shrink: 0;
+    background-color: transparent;
 }
 
-.task__left{
+.task__left {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -136,20 +146,21 @@
     margin-left: 16px;
 }
 
-.task--done .task__text{
-    text-decoration-line: line-through;
-}
-.change-mode{
+.task--done .task__text {
     text-decoration-line: line-through;
 }
 
-.task--done .task__checkbox{
+.change-mode {
+    text-decoration-line: line-through;
+}
+
+.task--done .task__checkbox {
     background: #4E4E4E;
     border: 1px solid #4E4E4E;
     position: relative;
 }
 
-.task--done .task__checkbox::after{
+.task--done .task__checkbox::after {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -160,7 +171,7 @@
     font-size: 12px;
 }
 
-.add-button{
+.add-button {
     display: flex;
     flex-direction: row;
     padding: 16px 40px 16px 16px;
@@ -168,10 +179,12 @@
     background-color: transparent;
     border: 0;
 }
+
 .add-container {
     display: flex;
     flex-direction: column;
 }
+
 .input-field {
     margin-top: 1rem;
     width: 100%;
@@ -182,12 +195,13 @@
     outline: none;
     padding: 0.5rem;
 }
+
 .input-field-container {
     padding-left: 1rem;
     padding-right: 1rem;
 }
 
-.add-button__checkbox{
+.add-button__checkbox {
     width: 16px;
     height: 16px;
     border: 2px solid #3D82EB;
@@ -200,8 +214,65 @@
 }
 
 
-.add-button__text{
+.add-button__text {
     font-size: 14px;
     color: #3D82EB;
     margin-left: 16px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    padding: 16px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    color: gray;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    border-radius: 1rem;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: 0;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content button:hover {
+    background-color: transparent;
+    border: 0;
+    color: #3D82EB;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

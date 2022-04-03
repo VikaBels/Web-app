@@ -32,7 +32,7 @@ public class Repository {
         TaskDTO taskDTO3 = new TaskDTO();
         taskDTO3.setTask("aubdinadinaxiaij");
         taskDTO3.setStatus(TaskStatus.DELETED);
-        taskDTO3.setId(1L);
+        taskDTO3.setId(2L);
         tasks.add(taskDTO3);
 
     }
@@ -64,6 +64,17 @@ public class Repository {
         }
 
         return selected;
+    }
+
+    public Long update(TaskDTO taskDTO){
+
+        for (TaskDTO task: tasks) {
+            if(task.getId().equals(taskDTO.getId())){
+                task.setStatus(taskDTO.getStatus());
+                return task.getId();
+            }
+        }
+        return -1L;
     }
 
 }

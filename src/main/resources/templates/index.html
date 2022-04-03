@@ -11,6 +11,7 @@
           href="../static/css/main.css"/>
 
     <script defer src="../js/index.js"></script>
+    <script defer src="../js/dropDownButton.js"></script>
 
     <title>ToDo App</title>
 </head>
@@ -26,11 +27,33 @@
             <div class="header__title">Today</div>
         </div>
 
-        <div class="menu">
-            <div class="menu__button">
-                <span></span><span></span><span></span>
+<!--        <button class="menu">-->
+<!--            <div class="menu__button">-->
+<!--                <span></span><span></span><span></span>-->
+<!--            </div>-->
+<!--            <div class="menu-items">-->
+<!--                <button>Button1</button>-->
+<!--                <button>Button2</button>-->
+<!--                <button>Button3</button>-->
+<!--            </div>-->
+<!--        </button>-->
+
+
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">...</button>
+            <div id="myDropdown" class="dropdown-content">
+                <form>
+                    <button href="#">Completed</button>
+                </form>
+                <form>
+                    <button href="#">In progress</button>
+                </form>
+                <form>
+                    <button href="#">Deleted</button>
+                </form>
             </div>
         </div>
+
     </div>
 
     <div th:each="taskObject : ${tasks}" class="tasks">
@@ -38,15 +61,24 @@
         <div class="task">
 
             <div class="task__left">
-                <div class="task__checkbox">
-                </div>
+                <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
+                    <button class="task__checkbox" type="submit">
+                    </button>
+                    <input hidden="hidden" th:name="status" th:value="COMPLETED">
+                    <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
+                </form>
+
                 <div class="task__text" th:text="${taskObject.task}">
                 </div>
             </div>
 
-            <div class="task__delete-button">
-                <img src="images/remove.svg" width="24" height="24" alt="">
-            </div>
+            <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
+                <button class="task__delete-button" type="submit">
+                    <img src="images/remove.svg" width="24" height="24" alt="">
+                </button>
+                <input hidden="hidden" th:name="status" th:value="DELETED">
+                <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
+            </form>
 
         </div>
 
@@ -67,7 +99,6 @@
         </button>
 
     </form>
-
 
 </div>
 

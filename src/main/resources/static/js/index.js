@@ -13,3 +13,4 @@ function data(){
     lastDate.innerText = today.getDate();
 }
 data();
+
