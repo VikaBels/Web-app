@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" media="all" type="text/css"
+          th:href="@{/css/main.css}"
+          href="../static/css/main.css"/>
+
+    <script defer src="../js/index.js"></script>
+
+    <title>ToDo App</title>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="header">
+        <div class="header__left">
+            <div class="calendar">
+                <div class="calendar__header"></div>
+                <div class="calendar__body"></div>
+            </div>
+            <div class="header__title">Today</div>
+        </div>
+
+        <div class="menu">
+            <div class="menu__button">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <div th:each="taskObject : ${tasks}" class="tasks">
+
+        <div class="task">
+
+            <div class="task__left">
+                <div class="task__checkbox">
+                </div>
+                <div class="task__text" th:text="${taskObject.task}">
+                </div>
+            </div>
+
+            <div class="task__delete-button">
+                <img src="images/remove.svg" width="24" height="24" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="add-button">
+        <div class="add-button__checkbox">
+            +
+        </div>
+        <div class="add-button__text">Create New Item</div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
