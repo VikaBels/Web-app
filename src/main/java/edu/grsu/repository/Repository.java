@@ -18,23 +18,7 @@ public class Repository {
     private IdGenerator idGenerator;
 
     public Repository(){
-        tasks = new ArrayList<>();
-        TaskDTO taskDTO = new TaskDTO();
-        taskDTO.setTask("Поти гулть");
-        taskDTO.setStatus(TaskStatus.COMPLETED);
-        taskDTO.setId(0L);
-        tasks.add(taskDTO);
-        TaskDTO taskDTO1 = new TaskDTO();
-        taskDTO1.setTask("Уйти гулять");
-        taskDTO1.setStatus(TaskStatus.IN_PROGRESS);
-        taskDTO1.setId(1L);
-        tasks.add(taskDTO1);
-        TaskDTO taskDTO3 = new TaskDTO();
-        taskDTO3.setTask("aubdinadinaxiaij");
-        taskDTO3.setStatus(TaskStatus.DELETED);
-        taskDTO3.setId(2L);
-        tasks.add(taskDTO3);
-
+        tasks=new ArrayList<>();
     }
 
     public Long create(TaskDTO taskDTO){

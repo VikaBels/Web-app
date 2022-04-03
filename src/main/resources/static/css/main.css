@@ -146,7 +146,16 @@
     margin-left: 16px;
 }
 
+.no-tasks{
+    display: flex;
+    justify-content: center;
+}
+
 .task--done .task__text {
+    /*text-decoration-line: line-through;*/
+}
+
+.task--deleted .task__text {
     text-decoration-line: line-through;
 }
 
