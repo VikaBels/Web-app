@@ -161,11 +161,30 @@
 }
 
 .add-button{
-    padding: 16px;
     display: flex;
     flex-direction: row;
-    padding-right: 40px;
+    padding: 16px 40px 16px 16px;
     cursor: pointer;
+    background-color: transparent;
+    border: 0;
+}
+.add-container {
+    display: flex;
+    flex-direction: column;
+}
+.input-field {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 14px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+    padding: 0.5rem;
+}
+.input-field-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .add-button__checkbox{

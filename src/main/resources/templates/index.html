@@ -53,12 +53,21 @@
     </div>
 
 
-    <div class="add-button">
-        <div class="add-button__checkbox">
-            +
-        </div>
-        <div class="add-button__text">Create New Item</div>
-    </div>
+    <form class="add-container" th:action="@{/home}" th:object="${newTask}" method="post">
+
+        <label class="input-field-container">
+            <input class="input-field" type="text" placeholder="Input task here" th:field="*{task}">
+        </label>
+
+        <button class="add-button" type="submit">
+            <div class="add-button__checkbox">
+                +
+            </div>
+            <div class="add-button__text">Create New Item</div>
+        </button>
+
+    </form>
+
 
 </div>
 

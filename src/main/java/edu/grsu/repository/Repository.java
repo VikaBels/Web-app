@@ -3,7 +3,6 @@ package edu.grsu.repository;
 import edu.grsu.filters.FilterDTO;
 import edu.grsu.model.TaskDTO;
 import edu.grsu.model.enums.TaskStatus;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +38,7 @@ public class Repository {
     }
 
     public Long create(TaskDTO taskDTO){
+        taskDTO.setStatus(TaskStatus.IN_PROGRESS);
         taskDTO.setId(idGenerator.generateId());
         tasks.add(taskDTO);
         return taskDTO.getId();
