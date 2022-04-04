@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" media="all" type="text/css"
+          th:href="@{/css/main.css}"
+          href="../static/css/main.css"/>
+
+    <script defer src="../js/index.js"></script>
+    <script defer src="../js/dropDownButton.js"></script>
+
+    <title>ToDo App</title>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="header">
+        <div class="header__left">
+            <div class="calendar">
+                <div class="calendar__header"></div>
+                <div class="calendar__body"></div>
+            </div>
+            <div class="header__title">Today</div>
+        </div>
+
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">...</button>
+            <div id="myDropdown" class="dropdown-content">
+                <form th:action="@{/home}" th:object="${filter}">
+                    <button href="#">Completed</button>
+                    <input hidden="hidden" name="status" th:value="COMPLETED">
+                </form>
+                <form th:action="@{/home}" th:object="${filter}">
+                    <button href="#">In progress</button>
+                    <input hidden="hidden" name="status" th:value="IN_PROGRESS">
+                </form>
+                <form th:action="@{/home}" th:object="${filter}">
+                    <button href="#">Deleted</button>
+                    <input hidden="hidden" name="status" th:value="DELETED">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:if="${tasks.empty}" class="tasks no-tasks">
+        <div class="task__text">No tasks</div>
+    </div>
+
+    <div th:each="taskObject : ${tasks}" class="tasks">
+
+        <div class="task">
+
+            <div th:if="${taskObject.status.name() == 'IN_PROGRESS'}" class="task__left">
+                <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
+                    <button class="task__checkbox" type="submit">
+                    </button>
+                    <input hidden="hidden" th:name="status" th:value="COMPLETED">
+                    <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
+                </form>
+
+                <div class="task__text" th:text="${taskObject.task}">В прогрессе</div>
+            </div>
+
+            <div th:if="${taskObject.status.name() == 'DELETED'}" class="task--deleted">
+                <div class="task__left">
+                    <div class="task__checkbox">
+                    </div>
+                    <div class="task__text" th:text="${taskObject.task}">Удалено</div>
+                </div>
+            </div>
+
+            <div th:if="${taskObject.status.name() == 'COMPLETED'}" class="task--done">
+                <div class="task__left">
+                    <div class="task__checkbox">
+                    </div>
+                    <div class="task__text" th:text="${taskObject.task}">Выполнено</div>
+                </div>
+            </div>
+
+            <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
+                <button class="task__delete-button" type="submit">
+                    <img src="images/remove.svg" width="24" height="24" alt="">
+                </button>
+                <input hidden="hidden" th:name="status" th:value="DELETED">
+                <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <form class="add-container" th:action="@{/home}" th:object="${newTask}" method="post">
+
+        <label class="input-field-container">
+            <input class="input-field" type="text" placeholder="Input task here" th:field="*{task}">
+        </label>
+
+        <button class="add-button" type="submit">
+            <div class="add-button__checkbox">
+                +
+            </div>
+            <div class="add-button__text">Create New Item</div>
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

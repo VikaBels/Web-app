@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+.wrapper {
+    margin: 32px auto;
+    max-width: 500px;
+    width: 100%;
+    padding: 32px 24px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.header__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header__title {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 18px;
+    color: #323232;
+    margin-left: 16px;
+}
+
+.calendar {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #3D82EB;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar__header {
+    height: 16px;
+    background: #3D82EB;
+    color: #fff;
+    font-weight: 700;
+    font-size: 10px;
+    text-align: center;
+}
+
+.calendar__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    height: 100%;
+    font-family: 'Roboto';
+    font-weight: 700;
+    color: #3D82EB;
+}
+
+.menu:hover {
+    position: relative;
+}
+
+.menu {
+    background-color: transparent;
+    border: 0;
+}
+
+.menu__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.menu__button span {
+    width: 4px;
+    height: 4px;
+    background: #C4C4C4;
+    display: block;
+    border-radius: 100%;
+}
+
+.menu__button:hover span {
+    background: #4E4E4E;
+}
+
+.task__delete-button {
+    display: none;
+}
+
+/**/
+.task {
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.task:hover {
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding-right: 16px;
+}
+
+.task:hover .task__delete-button {
+    width: 32px;
+    display: block;
+    background-color: transparent;
+    border: 0;
+}
+
+/**/
+.task__checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #CBCBCB;
+    border-radius: 100%;
+    flex-shrink: 0;
+    background-color: transparent;
+}
+
+.task__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task__text {
+    font-size: 14px;
+    line-height: 120%;
+    color: #4E4E4E;
+    margin-left: 16px;
+}
+
+.no-tasks{
+    display: flex;
+    justify-content: center;
+}
+
+.task--done .task__text {
+    /*text-decoration-line: line-through;*/
+}
+
+.task--deleted .task__text {
+    text-decoration-line: line-through;
+}
+
+.change-mode {
+    text-decoration-line: line-through;
+}
+
+.task--done .task__checkbox {
+    background: #4E4E4E;
+    border: 1px solid #4E4E4E;
+    position: relative;
+}
+
+.task--done .task__checkbox::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    content: '✓';
+    color: #fff;
+    font-size: 12px;
+}
+
+.add-button {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 40px 16px 16px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+}
+
+.add-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 14px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+    padding: 0.5rem;
+}
+
+.input-field-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.add-button__checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #3D82EB;
+    color: #3D82EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    flex-shrink: 0;
+}
+
+
+.add-button__text {
+    font-size: 14px;
+    color: #3D82EB;
+    margin-left: 16px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    color: black;
+    padding: 16px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    color: gray;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    border-radius: 1rem;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: 0;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content button:hover {
+    background-color: transparent;
+    border: 0;
+    color: #3D82EB;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
