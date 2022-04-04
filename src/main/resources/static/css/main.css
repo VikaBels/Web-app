@@ -64,7 +64,7 @@
     font-weight: 700;
     color: #3D82EB;
 }
-
+/*
 .menu:hover {
     position: relative;
 }
@@ -95,7 +95,7 @@
 .menu__button:hover span {
     background: #4E4E4E;
 }
-
+*/
 .task__delete-button {
     display: none;
 }
@@ -123,7 +123,7 @@
     border: 0;
 }
 
-/**/
+/*---------------------------------------------------------------------------*/
 .task__checkbox {
     width: 16px;
     height: 16px;
