@@ -46,7 +46,7 @@ public class HomeController {
     }
 
     @PostMapping("/{id}")
-    public ModelAndView delete(@PathVariable("id") Long id, @ModelAttribute("newTask") TaskDTO taskDTO) {
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("newTask") TaskDTO taskDTO) {
         ModelAndView modelAndView = new ModelAndView("redirect:/home");
         taskDTO.setId(id);
 

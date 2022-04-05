@@ -30,7 +30,7 @@
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">...</button>
             <div id="myDropdown" class="dropdown-content">
-                <form th:action="@{/home}" th:object="${filter}">
+                <form th:action="@{/home}" th:object="${status}">
                     <button href="#">Completed</button>
                     <input hidden="hidden" name="status" th:value="COMPLETED">
                 </form>
