@@ -2,8 +2,10 @@ package edu.grsu.controllers;
 
 
 import edu.grsu.filters.FilterDTO;
-import edu.grsu.model.TaskDTO;
-import edu.grsu.repository.Repository;
+import edu.grsu.dtos.TaskDTO;
+import edu.grsu.mappers.Mapper;
+import edu.grsu.model.enums.TaskStatus;
+import edu.grsu.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +19,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private Repository repository;
+    private TaskRepository taskRepository;
 
     @GetMapping
     public ModelAndView getAll(Model model, @ModelAttribute("status") FilterDTO filterDTO) {
@@ -27,7 +29,9 @@ public class HomeController {
             filterDTO = new FilterDTO();
         }
 
-        List<TaskDTO> taskDTOS = repository.getTasks(filterDTO);
+        List<TaskDTO> taskDTOS = Mapper.toListDTO(
+                taskRepository.findAllByStatus(filterDTO.getStatus())
+        );
 
         model.addAttribute("filter", filterDTO);
         model.addAttribute("tasks", taskDTOS);
@@ -39,8 +43,9 @@ public class HomeController {
     @PostMapping
     public ModelAndView create(@ModelAttribute("newTask") TaskDTO taskDTO) {
         ModelAndView modelAndView = new ModelAndView("redirect:/home");
+        taskDTO.setStatus(TaskStatus.IN_PROGRESS);
 
-        repository.create(taskDTO);
+        taskRepository.save(Mapper.toEntity(taskDTO));
 
         return modelAndView;
     }
@@ -50,7 +55,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("redirect:/home");
         taskDTO.setId(id);
 
-        repository.update(taskDTO);
+        taskRepository.save(Mapper.toEntity(taskDTO));
 
         return modelAndView;
     }
