@@ -61,4 +61,12 @@ public class HomeController {
     }
 
 
+    @PostMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/home");
+
+        taskRepository.deleteAllById(id);
+
+        return modelAndView;
+    }
 }
