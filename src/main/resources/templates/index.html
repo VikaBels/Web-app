@@ -65,49 +65,35 @@
 
                 <div class="task__text" th:text="${taskObject.task}">В прогрессе</div>
 
-                <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
-                    <button class="task__delete-button" type="submit">
-                        <img src="images/remove.svg" width="24" height="24" alt="">
-                    </button>
-                    <input hidden="hidden" th:name="status" th:value="DELETED">
-                    <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
-                </form>
-
             </div>
 
-            <div th:if="${taskObject.status.name() == 'DELETED'}" class="task--deleted">
-                <div class="task__left">
-                    <div class="task__checkbox">
-                    </div>
-                    <div class="task__text" th:text="${taskObject.task}">Удалено</div>
+            <div th:if="${taskObject.status.name() == 'DELETED'}" class="task--deleted task__left">
+                <div class="task__checkbox">
                 </div>
-
-                <form th:action="@{/home/delete/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
-                    <button class="task__delete-button" type="submit">
-                        <img src="images/remove.svg" width="24" height="24" alt="">
-                    </button>
-                </form>
-
+                <div class="task__text" th:text="${taskObject.task}">Удалено</div>
             </div>
 
-            <div th:if="${taskObject.status.name() == 'COMPLETED'}" class="task--done">
-                <div class="task__left">
-                    <div class="task__checkbox">
-                    </div>
-                    <div class="task__text" th:text="${taskObject.task}">Выполнено</div>
+            <div th:if="${taskObject.status.name() == 'COMPLETED'}" class="task--done task__left">
+                <div class="task__checkbox">
                 </div>
-
-                <form th:action="@{/home/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
-                    <button class="task__delete-button" type="submit">
-                        <img src="images/remove.svg" width="24" height="24" alt="">
-                    </button>
-                    <input hidden="hidden" th:name="status" th:value="DELETED">
-                    <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
-                </form>
-
+                <div class="task__text" th:text="${taskObject.task}">Выполнено</div>
             </div>
 
-            
+            <form th:if="${taskObject.status.name() == 'DELETED'}"
+                  th:action="@{/home/delete/{id}(id = ${taskObject.id})}" th:object="${newTask}" method="post">
+                <button class="task__delete-button" type="submit">
+                    <img src="images/remove.svg" width="24" height="24" alt="">
+                </button>
+            </form>
+
+            <form th:if="${taskObject.status.name() != 'DELETED'}" th:action="@{/home/{id}(id = ${taskObject.id})}"
+                  th:object="${newTask}" method="post">
+                <button class="task__delete-button" type="submit">
+                    <img src="images/remove.svg" width="24" height="24" alt="">
+                </button>
+                <input hidden="hidden" th:name="status" th:value="DELETED">
+                <input hidden="hidden" th:name="task" th:value="${taskObject.task}">
+            </form>
 
         </div>
 

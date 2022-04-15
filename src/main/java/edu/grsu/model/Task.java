@@ -8,13 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-//указание,что это объект базы
 @Entity
 @Getter
 @Setter
-//создать конструктор с параметрами
 @RequiredArgsConstructor
-//Переоределение
 @EqualsAndHashCode
 @Table(name = "tasks")
 public class Task {
